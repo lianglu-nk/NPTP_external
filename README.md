@@ -4,5 +4,12 @@
 
 ## Modification records
 
-- change the absolute path of the package to the relative path in file `callChemblScript1.sh`;
-- 
+- Change the absolute path of the package to the relative path in file `callChemblScript1.sh`;
+- Modified the code of fingerprint features in `chemblScript1.sh` and `callChemblScript1.sh` for clustering processing; 
+- Added C language standard library: **<stdio.h>**, **<stdlib.h>**, **<limits.h>**, **<sstream>**, **<vector>**, **<unistd.h>** to `genDirStructure.cpp`, `convertFPFBinary.cpp`, `clusterMinFull.cpp`, and also added the codes of dividing the path and modifying the external parameters (including the name of the output folder, the folder of the ECFC4 fingerprint feature, and the name of the fingerprint feature).
+- Added the R language package library (**dplyr**) to `createClusters.R` for internal or external structured data processing; added the relative path information of the generated folder to facilitate external input parameters; added external parameter options, including output folder and activity information file name of compound-target interaction; added codes to read activity information file of compound-target interaction; added analysis codes of clustering result to associate compound ID in activity information file with clustering results. The compound IDs are combined and grouped according to the target as well as the number of folds, to ensure that any fold under any target contains at least one inactive and one active records. Therefore the three-fold clustering file `cl.info` and seed were created.
+- Modified the input feature code in `loadData.py` for **FNN** to **ECFP6**, **FCFP6**, **MACCS** and their combinations.
+- Changed the `imp.load_source` in all `step1.py` and `step2.py` of **fnn/gc/lstm/weave** to `import actLib&utilsLib` to execute in python3 environment; modified absolute path to relative path; added an external parameter of the name of the signature file.
+- Modified the input feature related code in `step1.py` and `step2.py` for **FNN**, so as to run the neural network training of all specified fingerprint type at one time; changed `get_shape()[1].value` in `modelSELU.py` and `modelReLU.py` to  `tf.shape()[1]` to fix the error caused by version conflict.
+- Modified the input feature code in `loadData.py` for **LSTM**, changed **ECFP6** and **Tox** to **ECFP6 (2048-bit)** and **FCFP6 (2048-bit)**; Modified the input feature to the most frequent top 128 bits of **ECFP/FCFP** in the script `prepareDatasetsLocal.py`. changed the output length code of `models.py` to `num_targets=nrOutputTargets+167+128+128`.
+- Added the training script(`step_model.py`) for the final model to all deep learning processes, the final model on full data was trained according to the parameter with the highest average AUC value; modified the parameter selection code in `utilsLib.py` in the model folder, chose the index corresponding to the parameter with the highest AUC value.
