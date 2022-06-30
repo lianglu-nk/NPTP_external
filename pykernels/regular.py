@@ -6,7 +6,7 @@ are rarely the part of any ML library
 from abc import ABCMeta
 __author__ = 'lejlot'
 
-from pykernels_master.pykernels.base import Kernel
+from pykernels.base import Kernel
 #from base import Kernel
 
 import numpy as np
